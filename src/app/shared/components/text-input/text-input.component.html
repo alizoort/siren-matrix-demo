@@ -1,0 +1,28 @@
+<div>
+  <div class="wrapping-square" [ngClass]="{
+      invalid: fieldInvalid(), 'textarea-present': isMultiline
+    }">
+    <mat-form-field color="primary" class="sheet-elements"
+      [ngClass]="{'field-invalid' : ngControl.control.invalid , 'filled-field-invalid' : ngControl.control.isFilledInvalid() }">
+      <mat-label>{{
+        placeholdertext
+        }}
+      </mat-label>
+      <ng-container *ngIf="isMultiline">
+        <textarea style="resize: none; height: 110px" [dir]="direction" matInput [formControl]="ngControl.control" [placeholder]="placeholderLabel" [maxlength]="maxlength"></textarea>
+      </ng-container>
+
+      <ng-container *ngIf="!isMultiline">
+        <input *ngIf="applyUpperCase"  [dir]="direction" matInput [formControl]="ngControl.control" [type]="inputType" [placeholder]="placeholderLabel" [maxlength]="maxlength" appUpperCase />
+        <input *ngIf="!applyUpperCase"  [dir]="direction" matInput [formControl]="ngControl.control" [type]="inputType" [placeholder]="placeholderLabel" [maxlength]="maxlength" />
+      </ng-container>
+      
+      <button *ngIf="inputIcon" class="inputIcon" type="button" matSuffix mat-icon-button
+        (click)="emitInputIconClick($event)">
+        <mat-icon>{{inputIcon}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <app-error-display [customErrorMessage]="customErrorMessage" [control]="ngControl.control" [form]="ngForm">
+  </app-error-display>
+</div>

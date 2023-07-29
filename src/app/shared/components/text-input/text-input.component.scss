@@ -1,0 +1,15 @@
+.inputIcon {
+  outline: none;
+  font-size: 24px !important;
+  transform: translateY(3px);
+  .mat-icon {
+    transform: translateY(3px);
+  }
+}
+mat-form-field {
+  ::ng-deep {
+    .mat-form-field-label {
+      transform: inherit;
+    }
+  }
+}

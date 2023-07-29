@@ -1,0 +1,11 @@
+@import 'src/assets/global-styles/mixins';
+html,
+body {
+  display: flex;
+  margin: 0;
+  height: 100% !important;
+  flex: 1 1 auto;
+  flex-direction: column;
+  background-color: $grey-background-color;
+  font-family: 'DroidKufi', sans-serif !important;
+}

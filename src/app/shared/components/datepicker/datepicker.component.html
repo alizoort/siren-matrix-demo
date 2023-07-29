@@ -1,0 +1,10 @@
+<mat-form-field [ngClass]="{'with-clear': withClear}" color="primary" class="calendar">
+    <mat-label (click)="togglePicker()"> {{ title | translate }}</mat-label>
+    <input class="pointer" [matDatepickerFilter]="filterFunction" [formControl]="control" disabled matInput
+        [matDatepicker]="picker" [min]="minDate" [max]="maxDate">
+    <mat-icon matSuffix *ngIf="withClear" matDatepickerToggleIcon class="clear-icon"
+        (click)="clearDate($event)">clear</mat-icon>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi="true" #picker [startView]="startView" [disabled]="shouldDisableDatePicker"
+        [panelClass]="customClass ? customClass : ''"></mat-datepicker>
+</mat-form-field>

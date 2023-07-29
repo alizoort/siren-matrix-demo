@@ -1,0 +1,8 @@
+<div>
+    <ng-container [ngTemplateOutlet]="expansionItem.templateReference ? expansionItem.templateReference : defaultContainer" [ngTemplateOutletContext]="{data:data}" ></ng-container>
+</div>
+<ng-template #defaultContainer let-data="data">
+    <div class="item-content-box">
+       {{ data | translate }}
+    </div>
+   </ng-template>

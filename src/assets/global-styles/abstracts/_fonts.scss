@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+$heading-font-size: 16px;
+$error-msg-font-size: 12px;
+
+// bigger screens
+$heading-font-size-large: 20px;
+
+// smaller screens
+$heading-font-size-small: 14px;
+
+@font-face {
+
+  font-family: 'DroidKufi';
+  src: url("^assets/fonts/DroidKufi-Regular.ttf") format("truetype");
+}
+
+@include mat.core();
+
+$my-typography: mat.define-typography-config($font-family: 'DroidKufi'
+  );
+
+$mytheme: mat.define-light-theme((typography: $my-typography,
+    ));
+
+@include mat.all-component-themes($mytheme);
+
+[class^='mdc-'],
+[class^='mat-mdc-'] {
+
+  letter-spacing: 0.5px;
+}
+
+mat-label,
+.mat-mdc-input-element,
+.mat-mdc-select-value-text span,
+mat-option span,
+.mdc-list-item {
+  letter-spacing: 0;
+}

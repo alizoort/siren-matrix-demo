@@ -1,0 +1,102 @@
+.intelli-matrix-container {
+    width: 100%;
+    .matrix-controller-panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .navigation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            .page-navigator {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 5px;
+                .navigation-arrow {
+                   padding-top: 6px
+                }
+                .navigation-label {
+                    padding: 5px;
+                }
+            }
+        }
+    }
+    .table-container {
+        width: 100%;
+        border: 2px solid #EFEFEF;
+        border-radius: 10px;
+        background-color: white;
+        .table-headers-row {
+            display: flex;
+            justify-content: start;
+            align-items:start;
+            align-content: stretch;
+            color: #015586;
+            border-bottom: 2px solid #efefef;
+            width: 100%;
+            height: 100%;
+            flex-wrap: nowrap;
+            .table-header-item {
+             height:100%;
+             .header-box {
+                width: 100%;
+                height:100%;
+                display: flex;
+                    justify-content: start;
+                    align-items:start;
+                    flex-wrap: wrap;
+           
+             }
+            }
+        }
+        .table-inner-content-row {
+            @extend .table-headers-row;
+            color: black
+        }
+        .column-section-row-container{
+            display: flex;
+            justify-content: start;
+            align-items:start; 
+            width: 100%;
+            flex-shrink: 1;
+        }
+        .table-inner-row-container {
+            display: flex;
+            justify-content: start;
+            align-items:center; 
+            width: 100%;
+            flex-shrink: 1;
+            .table-row-cell {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                width: 100%;
+                flex-shrink: 1;
+                .subCell-container {
+                    width: 100%;
+                }
+            }
+        }
+    
+    }
+}
+.cell-item {
+  
+    background-color:#015586;
+}
+.table-cell-item {
+    background-color:#015586;
+}
+.cell-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-shrink: 1;
+}
+.column-section {
+    border: 5px solid black;
+}
