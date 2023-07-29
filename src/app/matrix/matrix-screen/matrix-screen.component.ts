@@ -13,6 +13,8 @@ export class MatrixScreenComponent {
   public isDesktop: boolean = false;
   @ViewChild("cellItemRef") cellItemRef :TemplateRef<any>;
   @ViewChild("iconItemRef") iconItemRef :TemplateRef<any>;
+  @ViewChild("phoneTableContainer") phoneTableContainer : TemplateRef<any>;
+  @ViewChild("listingCellItemRef") listingCellItemRef : TemplateRef<any>;
   ngOnInit(): void{
 
   }
@@ -84,6 +86,24 @@ export class MatrixScreenComponent {
               ],
              
             ]
+          }
+        )
+      )
+      this.crossPlatformMatrix.mobileMatrix.addRow(
+        new SirenMatrixRowModel(
+          {
+            listOfCells: [
+              [{templateRefDataModel:{"dataList":[
+                {"label":"booking_module.service_type","value":"تسجيل سيارات"},
+                {"label":'booking_module.service_table_status',"value":"متاح"},
+                {"label":'booking_module.service_table_location',"value":"الدكوانه"},
+                {"label": 'booking_module.service_table_date', "value":"٦/١٢/١٩٩٩"}
+              ],"decoration":"listContainer"},templateReference: this.listingCellItemRef}],
+              [
+                {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
+              ]
+            ],
+            decoration:  {  'border-right':'4px solid #47BE45' , 'border-radius': '7px', 'margin-bottom':'5px' , 'border-top': '2px solid #efefef', 'background-color':'white'}
           }
         )
       )

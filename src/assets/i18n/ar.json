@@ -37,6 +37,7 @@
         "outOfScope": "عذرا ، طلبك خارج النطاق. جرب شيئًا متعلقًا بتطبيقات TMO."
     },
     "booking_module": {
+        "service_type":"نوع الخدمة",
         "booking_starting": "يمكنكم حجز المواعيد ابتداء من الخميس ١٥ حزيران ٢٠٢٣",
         "close": "أغلق",
         "gender": "Gender",
