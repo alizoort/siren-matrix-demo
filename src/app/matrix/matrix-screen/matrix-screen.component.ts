@@ -50,7 +50,9 @@ export class MatrixScreenComponent {
                this.myHeaderCellItems("booking_module.service_table_category"),
                this.myHeaderCellItems("booking_module.service_table_status")
             ]
-          })
+          }),
+          decoration: {'background-color' : 'rgba(251, 219, 188, 0.938)', 'border-radius': '0.5rem',
+          'border':'4px solid blue'}
         }
       ),
       mobileMatrix: new SirenMatrixModel(
@@ -85,8 +87,10 @@ export class MatrixScreenComponent {
                 {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
               ],
              
-            ]
-          }
+            ],
+            decoration : {'border-right':`4px solid ${index%2==0? '#47BE45' : 'red'}`,'border-top':`4px solid ${index%2==0? '#47BE45' : 'red'}`}
+          },
+       
         )
       )
       this.crossPlatformMatrix.mobileMatrix.addRow(
@@ -103,7 +107,7 @@ export class MatrixScreenComponent {
                 {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
               ]
             ],
-            decoration:  {  'border-right':'4px solid #47BE45' , 'border-radius': '7px', 'margin-bottom':'5px' , 'border-top': '2px solid #efefef', 'background-color':'white'}
+            decoration:  {  'border-right':`4px solid ${index%2==0? '#47BE45' : 'red'}` , 'border-radius': '7px', 'margin-bottom':'5px' , 'border-top': '2px solid #efefef', 'background-color':'white'}
           }
         )
       )
