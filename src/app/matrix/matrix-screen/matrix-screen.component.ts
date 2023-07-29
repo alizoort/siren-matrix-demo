@@ -1,6 +1,6 @@
 import { Component, HostListener, TemplateRef, ViewChild } from '@angular/core';
-import { SirenCrossPlatformMatrixModel, SirenMatrixModel, SirenMatrixRowModel } from '../shared/models/siren-matrix-model';
-import { TemplateInjectorModel } from '../shared/models/template-injector-model';
+import { SirenCrossPlatformMatrixModel, SirenMatrixModel, SirenMatrixRowModel } from '../../shared/models/siren-matrix-model';
+import { TemplateInjectorModel } from '../../shared/models/template-injector-model';
 
 @Component({
   selector: 'app-matrix-screen',
