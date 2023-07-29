@@ -1,0 +1,113 @@
+@import '../abstracts/colors';
+@import '../abstracts/vars';
+
+.reports-list {
+  .page_title_text {
+    color: $app-white;
+  }
+  .sheet_title_text {
+    color: $app-white;
+    font-weight: 400;
+  }
+  .header-grid {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+  }
+  .sheet {
+    width: 100%;
+    background-color: $dark-primary-color;
+    border-top-left-radius: $sheet-border-radius;
+    border-top-right-radius: $sheet-border-radius;
+    z-index: 10;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 90px;
+    height: 200px;
+  }
+  .sheet-filter-spacing {
+    top: 150px !important;
+  }
+  .sheet2 {
+    width: 100%;
+    background-color: $app-grey;
+    border-top-left-radius: $sheet-border-radius;
+    border-top-right-radius: $sheet-border-radius;
+    z-index: 10;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 140px;
+    min-height: calc(100% - 140px);
+    height: fit-content;
+  }
+  .sheet2-filter-spacing {
+    top: 200px !important;
+  }
+  .sheet-elements-container {
+    margin-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: right;
+  }
+  .first-sheet-container {
+    margin-top: 15px;
+  }
+  .sheet-elem-2 {
+    margin-top: 45px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 900px) {
+    .sheet-elements-container {
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .sheet-elements-container {
+      padding-left: 25%;
+      padding-right: 25%;
+    }
+  }
+}
+.reports-cards-container {
+  margin: 20px 20px;
+  color: $app-white;
+  border-radius: 5px;
+}
+.reports-cards-section {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+}
+.report-label {
+  margin-right: 10px;
+  margin-top: 4px;
+  width: 75%;
+  text-align: right;
+}
+.report-number {
+  margin-top: 4px;
+  width: 15%;
+  text-align: left;
+}
+.reports-cards-actions-section {
+  height: 35px;
+  display: flex;
+  width: 100%;
+}
+.report-cards-add-report {
+  width: 50%;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  padding-top: 7px;
+  cursor: pointer;
+}
+.report-cards-back-to-list {
+  width: 50%;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  padding-top: 7px;
+  cursor: pointer;
+}

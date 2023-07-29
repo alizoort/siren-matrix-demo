@@ -1,0 +1,141 @@
+.grid {
+  padding: 30px 2% 10px 2%;
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+}
+@media (min-width: $breakpoint-tablet) {
+  .grid {
+    padding: 2% 1% 0%;
+    grid-template-columns: 5% auto 5%;
+  }
+}
+@media (max-width: $breakpoint-small) {
+  .grid {
+    padding: 4% 1%;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+.cur_auto {
+  cursor: auto;
+}
+.width-100 {
+  width: 100%;
+}
+.width-80 {
+  width: 80%;
+}
+.page_title {
+  text-align: center;
+  font-weight: bold;
+  font-size: $heading-font-size;
+}
+.app-button {
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  color: $app-white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  outline: none;
+  &:disabled {
+    background-color: $disabled-color;
+  }
+  &.bg_orange:disabled {
+    background-color: #946100b0;
+  }
+}
+.successful-snackbar {
+  background: $app-black;
+}
+.error-snackbar {
+  background: $app-red;
+}
+.qr-scan {
+  width: 90vw;
+  height: 50vh;
+  margin: auto;
+}
+.search_bar {
+  padding: 0px 15%;
+  text-align: center;
+}
+.has-search {
+  .form-control {
+    height: 45px;
+    padding-left: 2.4rem;
+    background-color: $app-blue;
+    border-color: transparent;
+  }
+  .clear-icon {
+    position: absolute;
+    left: 5%;
+    z-index: 2;
+    line-height: 45px;
+    pointer-events: all;
+    color: $app-white;
+    height: 45px;
+  }
+  .form-control-feedback {
+    position: absolute;
+    left: 8%;
+    z-index: 2;
+    display: block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    pointer-events: none;
+    color: $app-white;
+    font-size: 18px;
+  }
+}
+.search_input {
+  color: $app-white;
+}
+.search_input::placeholder,
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+  color: $app-white !important;
+  font-weight: bold;
+}
+.mat-input-element {
+  font-size: 16px !important;
+}
+.mat-form-field-disabled {
+  .mat-input-element,
+  .mat-input-element:disabled {
+    color: #000000ba;
+  }
+  .mat-select-value {
+    color: #000000ba;
+  }
+}
+.no-height {
+  max-height: none !important;
+}
+.subtitle {
+  margin-top: 15px;
+}
+.stepper-forms-send-btn {
+  background-color: $primary-color;
+}
+.owl-dt-timer {
+  direction: ltr;
+}
+.backdrop-container {
+  direction: ltr;
+}
+.mat-select-panel .mat-option {
+  height: fit-content !important;
+  margin: 8px 0px;
+  padding: 13px;
+  span.mat-option-text {
+    white-space: pre-wrap;
+    line-height: 18px;
+  }
+}

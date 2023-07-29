@@ -1,0 +1,62 @@
+<div class="intelli-matrix-container">
+    <div *ngIf="showPagination" class="matrix-controller-panel">
+        <div class="row-filter">
+            <div class="wrapping-square input-styling">
+            <form [formGroup]="intelliMatrixFormGroup">
+                <app-single-select formControlName="groupSelector" [withClearButton]="false"
+                placeholderLabel="{{'booking_module.pageFilterLabel' | translate}}"
+                [dropdownList]="pageGroups"></app-single-select>
+            </form>
+        </div>
+        </div>
+       <div class="navigation-container">
+        <div class="page-navigator">
+            <div class="navigation-arrow" (click)="showNextPage($event)">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
+            <div class="navigation-label">
+                {{ 'booking_module.nextPage' | translate }}
+            </div>
+            <div class="navigation-label">
+                {{ 'booking_module.previousPage' | translate }}
+            </div>
+            <div class="navigation-arrow" (click)="showPreviousPage($event)">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </div>
+           
+        </div>
+        <div>
+            {{ ('booking_module.currentPage' | translate )+ showCurrentPage}}
+        </div>
+       </div>
+    </div>
+    <div class="table-container" [ngStyle]="dynamicTableModel ? dynamicTableModel.decoration:{}">
+        <div *ngIf="dynamicTableModel">
+          <div class="table-headers-row">
+              <div  *ngFor="let item of dynamicTableModel.headerRow.listOfCells; index as i" class="table-header-item" [style.flexBasis]="dynamicTableModel.listOfFactors[i]">
+                  <div class="header-box">
+                      <div *ngFor="let cell of item" class="tree-item-container">
+                        <div>
+                          <app-tree-item [expansionItem]="cell"></app-tree-item>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+          <div *ngIf="dynamicTableModel">
+              <div *ngFor="let row of dynamicTableModel.filteredRows" [ngStyle]="row.decoration">
+                  <div class="table-inner-content-row">
+                      <div *ngFor="let item of  row.listOfCells; index as i" class="table-header-item" [style.flexBasis]="dynamicTableModel.listOfFactors[i]">
+                          <div class="header-box">
+                              <div *ngFor="let cell of item" class="tree-item-container">
+                                  <app-tree-item [expansionItem]="cell"></app-tree-item>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+</div>

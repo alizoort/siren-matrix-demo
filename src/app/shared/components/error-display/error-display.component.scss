@@ -1,0 +1,8 @@
+@import 'src/assets/global-styles/abstracts/colors';
+@import 'src/assets/global-styles/abstracts/fonts';
+
+.error {
+  color: $app-red;
+  font-size: $error-msg-font-size;
+  width: fit-content !important;
+}

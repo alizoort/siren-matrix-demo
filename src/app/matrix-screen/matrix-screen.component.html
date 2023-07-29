@@ -1,0 +1,38 @@
+<div class="matrix-screen-container">
+   <div>
+    <ng-container *ngIf="dynamicTableModel">
+        <siren-matrix [dynamicTableModel]="dynamicTableModel" [paginationCoefficient]="5"></siren-matrix>
+    </ng-container>
+   </div>
+</div>
+<ng-template #iconItemRef let-data="data">
+    <div [class]="data.decoration" (click)="onClickAction(data.action)">
+     <img [src]="data.icon">
+    </div>
+ </ng-template>
+ <ng-template #cellItemRef let-data="data">
+     <div [class]="data.decoration" >
+         {{ data.text | translate }}
+     </div>
+ </ng-template>
+ <ng-template #listingCellItemRef let-data="data">
+    <div>
+        <div *ngFor="let item of data.dataList" [class]="data.decoration">
+            <div>
+                {{'- ' + item }}
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #phoneTableContainer let-data="data">
+<div class="phone-table-container">
+    <div *ngFor="let element of data" class="service-type-container">
+        <div class="table-title">
+            {{ element.label | translate }}
+        </div>
+        <div>
+            {{ element.value | translate }}
+        </div>
+    </div>
+</div>
+</ng-template>

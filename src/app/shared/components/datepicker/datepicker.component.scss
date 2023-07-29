@@ -1,0 +1,77 @@
+::ng-deep {
+  mat-form-field {
+    width: 96%;
+
+    .mat-form-field-wrapper {
+      .mat-form-field-underline {
+        display: none;
+      }
+
+      .mat-form-field-infix {
+        .mat-input-element {
+          height: 20px;
+        }
+
+        .mat-form-field-label-wrapper {
+          .mat-form-field-label {
+            overflow: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .mat-form-field-suffix {
+    font-size: 30px;
+  }
+
+  .mat-mdc-input-element:disabled {
+    color: #000000ba !important;
+  }
+
+  .mat-form-field-disabled {
+
+    label,
+    mat-label {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+
+::ng-deep {
+  mat-datepicker-toggle {
+    button {
+      outline: none !important;
+      margin-top: 5px;
+    }
+  }
+}
+
+.with-clear {
+  input {
+    width: 75%;
+  }
+
+  mat-icon {
+    position: relative;
+    float: left;
+    top: -3px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  ::ng-deep {
+    mat-datepicker-toggle {
+      button {
+        width: 60%;
+      }
+    }
+  }
+}
+
+.clear-icon {
+  margin: 20px 8px auto 5px;
+  cursor: pointer;
+  font-size: 20px;
+}

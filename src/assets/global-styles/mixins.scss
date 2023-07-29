@@ -1,0 +1,331 @@
+// https://github.com/angular/flex-layout/wiki/Responsive-API
+
+$breakpoints: (
+   xs: "screen and (max-width: 599px)",
+   sm: "screen and (min-width: 600px) and (max-width: 959px)",
+   md: "screen and (min-width: 960px) and (max-width: 1279px)",
+   lg: "screen and (min-width: 1280px) and (max-width: 1919px)",
+   xl: "screen and (min-width: 1920px) and (max-width: 5000px)",
+   lt-sm: "screen and (max-width: 599px)",
+   lt-md: "screen and (max-width: 959px)",
+   lt-lg: "screen and (max-width: 1279px)",
+   lt-xl: "screen and (max-width: 1919px)",
+   gt-xs: "screen and (min-width: 600px)",
+   gt-sm: "screen and (min-width: 960px)",
+   gt-md: "screen and (min-width: 1280px)",
+   gt-lg: "screen and (min-width: 1920px)",
+   ) !default;
+
+$helper-breakpoints: (
+   xs: null,
+   sm: "gt-xs",
+   md: "gt-sm",
+   lg: "gt-md",
+   xl: "gt-lg",
+);
+
+@mixin media-breakpoint($breakpointName) {
+   $mediaQuery: map-get($breakpoints, $breakpointName);
+
+   @if ($mediaQuery ==null) {
+      @content;
+   }
+
+   @else {
+      @media #{$mediaQuery} {
+         @content;
+      }
+   }
+}
+
+@mixin dashboard-md() {
+
+   @media screen and (min-width: 960px) and (max-width: 1400px) {
+
+      @content;
+   }
+}
+
+@mixin matStepperSelected($num) {
+   $num: ($num * 2)+1;
+
+   .mat-step-header:nth-child(-n + #{$num}) {
+      .mat-step-icon {
+         background-color: rgb(17, 42, 93);
+      }
+   }
+
+   .mat-stepper-horizontal-line:nth-child(-n + #{$num - 1}) {
+      background-color: rgb(17, 42, 93);
+   }
+}
+
+@mixin _rtl() {
+
+   .rtl & {
+      @content;
+   }
+}
+
+@mixin _ltr() {
+
+   .ltr & {
+      @content;
+   }
+}
+
+@mixin social-media-container($backgroundColor) {
+   background-color: $backgroundColor;
+   padding: 0.625rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   .middle-media-container {
+      margin-left: 1.25rem;
+      margin-right: 1.25rem;
+   }
+
+   div {
+      cursor: pointer;
+   }
+}
+
+@mixin padding-start($paddingVal: initial) {
+
+   .ltr & {
+      padding-left: $paddingVal;
+   }
+
+   .rtl & {
+      padding-right: $paddingVal;
+   }
+}
+
+@mixin margin-start($marginVal: initial) {
+
+   .ltr & {
+      margin-left: $marginVal;
+   }
+
+   .rtl & {
+      margin-right: $marginVal;
+   }
+}
+
+@mixin padding-end($paddingVal: initial) {
+
+
+   .ltr & {
+      padding-right: $paddingVal;
+   }
+
+   .rtl & {
+      padding-left: $paddingVal;
+   }
+}
+
+@mixin margin-end($marginVal: initial) {
+
+
+   .ltr & {
+      margin-right: $marginVal;
+   }
+
+   .rtl & {
+      margin-left: $marginVal;
+   }
+}
+
+@mixin pos-start($posVal: initial, $autoRelated: false) {
+
+
+   .ltr & {
+      left: $posVal;
+
+      @if ($autoRelated) {
+         right: auto;
+      }
+   }
+
+   .rtl & {
+      right: $posVal;
+
+      @if ($autoRelated) {
+         left: auto;
+      }
+   }
+}
+
+@mixin pos-end($posVal: initial, $autoRelated: false) {
+
+
+   .ltr & {
+      right: $posVal;
+
+      @if ($autoRelated) {
+         left: auto;
+      }
+   }
+
+   .rtl & {
+      left: $posVal;
+
+      @if ($autoRelated) {
+         right: auto;
+      }
+   }
+}
+
+@mixin border-h-start($borderVal: initial, $color: initial) {
+
+
+   .ltr & {
+      border-left: $borderVal solid $color;
+   }
+
+   .rtl & {
+      border-right: $borderVal solid $color;
+   }
+}
+
+@mixin border-h-end($borderVal: initial, $color: initial) {
+
+
+   .ltr & {
+      border-right: $borderVal solid $color;
+   }
+
+   .rtl & {
+      border-left: $borderVal solid $color;
+   }
+}
+
+@mixin text-align-start() {
+
+
+   .ltr & {
+      text-align: left;
+   }
+
+   .rtl & {
+      text-align: right;
+   }
+}
+
+@mixin text-align-end() {
+
+
+   .ltr & {
+      text-align: right;
+   }
+
+   .rtl & {
+      text-align: left;
+   }
+}
+
+@mixin icon-size($size: 24px) {
+   font-size: $size;
+   height: $size;
+   width: $size;
+   line-height: $size;
+}
+
+// Grouped rules
+
+@mixin msEdgeRules() {
+   @supports (-ms-ime-align: auto) {}
+}
+
+@mixin safariRules() {
+   @media not all and (min-resolution: .001dpcm) {
+      @supports (-webkit-appearance:none) {}
+   }
+}
+
+
+@mixin noPaddingsForMatFields() {
+   .noMatFieldWrapperPadding {
+      .mat-form-field-wrapper {
+         margin: 0;
+         padding: 0;
+      }
+   }
+}
+
+// Flex
+@mixin simple-flex($direction: row, $jContent: flex-start, $aItems: flex-start, $wrap: wrap) {
+   display: flex;
+   flex-direction: $direction;
+   flex-wrap: $wrap;
+   justify-content: $jContent;
+   align-items: $aItems;
+   align-content: stretch;
+}
+
+
+@mixin pulseblue {
+   color: #3c50e0;
+}
+
+@mixin emptyPageImgAnimation {
+
+   @keyframes hideshow {
+      0% {
+         opacity: 0;
+      }
+
+      50% {
+         opacity: 1;
+      }
+
+      100% {
+         opacity: 0;
+      }
+   }
+
+   @keyframes hideshow2 {
+      0% {
+         opacity: 0;
+      }
+
+      70% {
+         opacity: 1;
+      }
+
+      100% {
+         opacity: 0;
+      }
+   }
+
+   .animated {
+
+      #Rectangle_23709,
+      #Rectangle_23710,
+      #Rectangle_23711,
+      #Rectangle_23712,
+      #Rectangle_23713,
+      #Rectangle_23714,
+      #Rectangle_23706,
+      #Rectangle_23707,
+      #Rectangle_23708,
+      #Ellipse_14,
+      #Ellipse_15,
+      #Ellipse_16,
+      {
+      animation: hideshow2 1.5s ease infinite;
+   }
+
+   #Rectangle_23700,
+   #Rectangle_23701,
+   #Rectangle_23702,
+   #Rectangle_23703,
+   #Rectangle_23704,
+   #Rectangle_23705,
+   #Path_172219,
+   #Path_172220 {
+      animation: hideshow 1.5s ease infinite;
+   }
+}
+}

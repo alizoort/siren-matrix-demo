@@ -1,0 +1,23 @@
+<div class="multiselect_wrapper" [ngClass]="{'field-invalid' : ngControl.control.invalid , 'filled-field-invalid' : ngControl.control.isFilledInvalid()  }">
+    <mat-icon [ngClass]="{'disabled-icon': clearBtnDisabled}" *ngIf="withClearButton && (selectedValueID > 0)" class="clear-icon pointer"
+        (click)="clear()">clear</mat-icon>
+    <mat-form-field class="single-select">
+        <mat-label>{{ placeholderLabel }}</mat-label>
+        <mat-select #select [formControl]="ngControl.control" (openedChange)="openChange($event)">
+            <mat-form-field *ngIf="withFilter" class="dropdown-search-field">
+                <input #searchInput color="primary" [(ngModel)]="searchValueChanged" (keydown)="handleInput($event)"
+                    autocomplete="off" type="text" matInput placeholder="{{ 'general.search' | translate }}"
+                    [ngModelOptions]="{standalone: true}">
+                <mat-icon class="search-input-icon" *ngIf="searchValue" (click)="resetSearchValue()">clear
+                </mat-icon>
+            </mat-form-field>
+            <cdk-virtual-scroll-viewport itemSize="50" [style.height.px]=5*35>
+                <mat-option [value]="selectedValueID"
+                    *ngIf="selectedValueID > 0 && !this.searchValue">
+                    {{selectedValuePlaceholder}}</mat-option>
+                <mat-option *cdkVirtualFor="let option of filteredDropdownList" [value]="option.id" [ngClass]="{'hidden' : option.id == selectedValueID}"
+                    (click)="optionSelected()">{{option.name}} {{ option.nameEn || option.nameEn || ""}}</mat-option>
+            </cdk-virtual-scroll-viewport>
+        </mat-select>
+    </mat-form-field>
+</div>
