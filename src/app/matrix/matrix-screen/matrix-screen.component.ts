@@ -1,5 +1,5 @@
 import { Component, HostListener, TemplateRef, ViewChild } from '@angular/core';
-import { SirenCrossPlatformMatrixModel, SirenMatrixModel, SirenMatrixRowModel } from '../../shared/models/siren-matrix-model';
+import { SirenCrossPlatformMatrixModel, SirenMatrixCellModel, SirenMatrixModel, SirenMatrixRowModel } from '../../shared/models/siren-matrix-model';
 import { TemplateInjectorModel } from '../../shared/models/template-injector-model';
 
 @Component({
@@ -26,11 +26,15 @@ export class MatrixScreenComponent {
   ngAfterViewInit(){
     this.buildTable()
    }
-  myHeaderCellItems(label: string): TemplateInjectorModel[]{
-    return   [{templateRefDataModel : {text: label,decoration: "cellule-item"},templateReference: this.cellItemRef},{templateRefDataModel: {icon:"assets/images/selected-expansion-arrow.svg",decoration:"table-cell-item"},templateReference: this.iconItemRef}];
+  myHeaderCellItems(label: string): SirenMatrixCellModel{
+    return   new SirenMatrixCellModel({
+      cellItems: [{templateRefDataModel : {text: label,decoration: "cellule-item"},templateReference: this.cellItemRef},{templateRefDataModel: {icon:"assets/images/selected-expansion-arrow.svg",decoration:"table-cell-item"},templateReference: this.iconItemRef}]
+    });
   }
   myMobileHeaderCellItems(label: string){
-    return  [{templateRefDataModel: {"text":label,"decoration":"cellule-item"},templateReference: this.cellItemRef}]
+    return  new SirenMatrixCellModel({
+      cellItems: [{templateRefDataModel: {"text":label,"decoration":"cellule-item"},templateReference: this.cellItemRef}]
+    })
   }
   viewAppointment(){
     console.log("View Appointment !")
@@ -78,14 +82,27 @@ export class MatrixScreenComponent {
         new SirenMatrixRowModel(
           {
             listOfCells : [
-              [{templateRefDataModel:{"text": "تسجيل سيارات","decoration":"cell-item"},templateReference: this.cellItemRef}],
-              [{templateRefDataModel:{"text": "الدكوانه","decoration":"cell-item"},templateReference: this.cellItemRef}],
-              [{templateRefDataModel:{"text": "٦/١٢/١٩٩٩","decoration":"cell-item"},templateReference: this.cellItemRef}],
-              [{templateRefDataModel:{"text": "خدمة سوق","decoration":"cell-item"},templateReference: this.cellItemRef}],
-              [
+             new SirenMatrixCellModel({
+              cellItems:  [{templateRefDataModel:{"text": "تسجيل سيارات","decoration":"cell-item"},templateReference: this.cellItemRef}]
+             }),
+             new SirenMatrixCellModel({
+              decoration:{'background-color': 'red'},
+              cellItems:  [{templateRefDataModel:{"text": "الدكوانه","decoration":"cell-item"},templateReference: this.cellItemRef}]
+             }),
+            new SirenMatrixCellModel({
+              cellItems:   [{templateRefDataModel:{"text": "٦/١٢/١٩٩٩","decoration":"cell-item"},templateReference: this.cellItemRef}]
+            }),
+             new SirenMatrixCellModel({
+              decoration:{'background-color': 'red'},
+              expansionFactor:2,
+             cellItems: [{templateRefDataModel:{"text": "خدمة سوق","decoration":"cell-item"},templateReference: this.cellItemRef}]
+             }),
+         /*     new SirenMatrixCellModel({
+              cellItems:  [
                 {templateRefDataModel: {"text":"متاح","decoration":"completed-container"},templateReference: this.cellItemRef},
                 {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
-              ],
+              ]
+             }), */
              
             ],
             decoration : {'border-right':`4px solid ${index%2==0? '#47BE45' : 'red'}`,'border-top':`4px solid ${index%2==0? '#47BE45' : 'red'}`}
@@ -97,15 +114,19 @@ export class MatrixScreenComponent {
         new SirenMatrixRowModel(
           {
             listOfCells: [
-              [{templateRefDataModel:{"dataList":[
-                {"label":"booking_module.service_type","value":"تسجيل سيارات"},
-                {"label":'booking_module.service_table_status',"value":"متاح"},
-                {"label":'booking_module.service_table_location',"value":"الدكوانه"},
-                {"label": 'booking_module.service_table_date', "value":"٦/١٢/١٩٩٩"}
-              ],"decoration":"listContainer"},templateReference: this.listingCellItemRef}],
-              [
+              new SirenMatrixCellModel({
+                cellItems:   [{templateRefDataModel:{"dataList":[
+                  {"label":"booking_module.service_type","value":"تسجيل سيارات"},
+                  {"label":'booking_module.service_table_status',"value":"متاح"},
+                  {"label":'booking_module.service_table_location',"value":"الدكوانه"},
+                  {"label": 'booking_module.service_table_date', "value":"٦/١٢/١٩٩٩"}
+                ],"decoration":"listContainer"},templateReference: this.listingCellItemRef}]
+              }),
+             new SirenMatrixCellModel({
+              cellItems:  [
                 {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
               ]
+             })
             ],
             decoration:  {  'border-right':`4px solid ${index%2==0? '#47BE45' : 'red'}` , 'border-radius': '7px', 'margin-bottom':'5px' , 'border-top': '2px solid #efefef', 'background-color':'white'}
           }

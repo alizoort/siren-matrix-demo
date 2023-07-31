@@ -31,8 +31,8 @@ export class SirenMatrixModel {
        this._filteredRows = parameters.filteredRows || [];
     }
     public addRow(row : SirenMatrixRowModel){
-        if(row.listOfCells.length != this._headerRow.listOfCells.length){
-            throw new Error("Please make sure that the number of cells is equal to the number of columns")
+       if(row.listOfCells.map((cell)=> cell.expansionFactor).reduce((accumulator,value)=> accumulator+value,0)!= this._headerRow.listOfCells.length){
+            throw new Error("Please make sure that the sum of the cell factors is equal to the number of columns")
         }
         this._listOfRows.push(row)
     }
@@ -46,7 +46,7 @@ export class SirenMatrixModel {
         return this._listOfRows;
     }
     set listOfRows(rows : SirenMatrixRowModel[]){
-        if(rows.find((row)=> row.listOfCells.length !== this._headerRow.listOfCells.length)){
+        if(rows.find((row)=> row.listOfCells.map((cell)=> cell.expansionFactor).reduce((accumulator,value)=> accumulator+value,0)!= this._headerRow.listOfCells.length)){
             throw new Error("Please make sure that the number of cells is equal to the number of columns") 
         }
         this._listOfRows = rows;
@@ -55,22 +55,40 @@ export class SirenMatrixModel {
         return this._filteredRows
     }
     set filteredRows(rows : SirenMatrixRowModel[]){
-        if(rows.find((row)=> row.listOfCells.length !== this._headerRow.listOfCells.length)){
+        if(rows.find((row)=> row.listOfCells.map((cell)=> cell.expansionFactor).reduce((accumulator,value)=> accumulator+value,0)!= this._headerRow.listOfCells.length)){
             throw new Error("Please make sure that the number of cells is equal to the number of columns") 
         }
         this._filteredRows = rows;
     }
 }
 export class SirenMatrixRowModel{
-    public listOfCells:TemplateInjectorModel[][];
+    public listOfCells:SirenMatrixCellModel[];
     public decoration : any={}
     public constructor(
         parameters: {
-            listOfCells:TemplateInjectorModel[][],
+            listOfCells:SirenMatrixCellModel[],
             decoration? : any
         }
     ){
         this.listOfCells = parameters.listOfCells;
         this.decoration = parameters.decoration || {};
+    }
+}
+export class SirenMatrixCellModel {
+    public _expansionFactor: number;
+    public _decoration : any;
+    public _cellItems : TemplateInjectorModel[];
+    public constructor(parameters: {
+        expansionFactor?: number, decoration?: any,cellItems: TemplateInjectorModel[]
+    }){
+        this._expansionFactor=parameters.expansionFactor || 1;
+        this._decoration = parameters.decoration || {};
+        this._cellItems = parameters.cellItems
+    }
+    get expansionFactor(){
+        return this._expansionFactor
+    }
+    get cellItems(){
+        return this._cellItems
     }
 }

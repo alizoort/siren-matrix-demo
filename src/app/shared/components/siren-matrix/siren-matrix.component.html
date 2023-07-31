@@ -35,7 +35,7 @@
           <div class="table-headers-row">
               <div  *ngFor="let item of dynamicTableModel.headerRow.listOfCells; index as i" class="table-header-item" [style.flexBasis]="dynamicTableModel.listOfFactors[i]">
                   <div class="header-box">
-                      <div *ngFor="let cell of item" class="tree-item-container">
+                      <div *ngFor="let cell of item.cellItems" class="tree-item-container">
                         <div>
                           <app-tree-item [expansionItem]="cell"></app-tree-item>
                         </div>
@@ -47,9 +47,9 @@
           <div *ngIf="dynamicTableModel">
               <div *ngFor="let row of dynamicTableModel.filteredRows" [ngStyle]="row.decoration">
                   <div class="table-inner-content-row">
-                      <div *ngFor="let item of  row.listOfCells; index as i" class="table-header-item" [style.flexBasis]="dynamicTableModel.listOfFactors[i]">
+                      <div *ngFor="let item of  row.listOfCells; index as i" class="table-header-item"  [style.flexBasis]="dynamicTableModel.listOfFactors | cellMerger : item.expansionFactor : i" [ngStyle]="item.decoration">
                           <div class="header-box">
-                              <div *ngFor="let cell of item" class="tree-item-container">
+                              <div *ngFor="let cell of item.cellItems" class="tree-item-container">
                                   <app-tree-item [expansionItem]="cell"></app-tree-item>
                               </div>
                           </div>
