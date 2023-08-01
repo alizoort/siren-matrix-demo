@@ -91,4 +91,7 @@ export class SirenMatrixCellModel {
     get cellItems(){
         return this._cellItems
     }
+    get decoration(){
+        return this._decoration
+    }
 }
