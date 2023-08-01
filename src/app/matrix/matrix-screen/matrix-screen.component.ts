@@ -36,6 +36,9 @@ export class MatrixScreenComponent {
       cellItems: [{templateRefDataModel: {"text":label,"decoration":"cellule-item"},templateReference: this.cellItemRef}]
     })
   }
+  onClickAction(action){
+    action.callback();
+  }
   viewAppointment(){
     console.log("View Appointment !")
   }
@@ -93,16 +96,16 @@ export class MatrixScreenComponent {
               cellItems:   [{templateRefDataModel:{"text": "٦/١٢/١٩٩٩","decoration":"cell-item"},templateReference: this.cellItemRef}]
             }),
              new SirenMatrixCellModel({
-              decoration:{'background-color': 'red'},
-              expansionFactor:2,
+              decoration:{'background-color': 'yellow'},
+        //      expansionFactor:2,
              cellItems: [{templateRefDataModel:{"text": "خدمة سوق","decoration":"cell-item"},templateReference: this.cellItemRef}]
              }),
-         /*     new SirenMatrixCellModel({
+             new SirenMatrixCellModel({
               cellItems:  [
                 {templateRefDataModel: {"text":"متاح","decoration":"completed-container"},templateReference: this.cellItemRef},
                 {templateRefDataModel: {"icon":"assets/images/carbon_view-filled.svg","decoration":"icon-item-container","action":{"callback": () => this.viewAppointment()}},templateReference: this.iconItemRef}
               ]
-             }), */
+             }),
              
             ],
             decoration : {'border-right':`4px solid ${index%2==0? '#47BE45' : 'red'}`,'border-top':`4px solid ${index%2==0? '#47BE45' : 'red'}`}
